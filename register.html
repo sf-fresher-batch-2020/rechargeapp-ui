@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RechargeApp</title>
+</head>
+<body>
+    <div>
+    <form  onsubmit="registerForm()">
+       <h3>Register</h3>
+       <label for="">Choose</label><br>
+       <input type="radio" id="users" name="user" value="airtel">
+        <label >Airtel</label><br>
+        <input type="radio" id="admin" name="user" value="jio">
+        <label >Jio</label><br>
+        <label >Name</label><input type="text" id="name" placeholder="Enter your name" required autofocus><br>
+        <label >Mobile Number</label><input type="tel" id="number" placeholder="Enter your number" required><br>
+        <label >Email</label><input type="email" id="mail" placeholder="Enter your mail id" required><br>
+        <label for="">Password</label><input type="password" name="" id="pass"><br>
+        <label >DOB</label><input type="date" name="" id="dob" min="1950-01-01"><br>
+        <label for="">Select Gender</label><br>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label><br>
+        <input type="submit">
+    </form>
+</div>
+    <script src="modules\register.js"></script>
+    <script>
+        function registerForm()
+        {
+            //$("#header").load("components/_header.html");
+            event.preventDefault();
+            var name=document.querySelector("#name").value;
+            var number=document.querySelector("#number").value;
+            var email=document.querySelector("#mail").value;
+            var password=document.querySelector("#pass").value;
+            var genderOption=document.getElementsByName("gender");
+            var userOption=document.getElementsByName("user");
+            var wallet=0;
+            var dob=document.querySelector("#dob").value;
+            let user=null;
+            for(let options of userOption)
+            {
+                if(options.checked){
+                    user=options.value;
+                    break;
+                }
+            }
+            let gender=null;
+            for(let option of genderOption)
+            {
+                if(option.checked){
+                    gender=option.value;
+                    break;
+                }
+            }
+            
+        userObj={"operator":user,"name":name,"number":number,"email":email,"password":password, "dob":dob,"gender":gender};
+           // userObj={"user":user,"name":name,"number":number,"mail":mail,"gender":gender};
+        var obj=new RegisterForm();
+        let result=obj.register(userObj);
+         if(result=='success') 
+         {
+            alert("Registered Successfully");
+            window.location.href="login.html";
+          }
+        else
+        {
+            alert("Registration Failed");
+        }
+         /* var liss=[];
+            liss.push(userObj);
+            localStorage.setItem("Registered_Users",JSON.stringify(liss));*/
+    }
+</script>
+</body>
+</html>

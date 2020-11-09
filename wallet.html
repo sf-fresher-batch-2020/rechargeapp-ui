@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RechargeApp E-Wallet</title>
+</head>
+
+<body>
+ <form  onsubmit="getAmount()">
+     <label for="">Enter Amount</label> 
+     <input type="number" min="0" max="10000" step="1" name="deposit" id="amount" required><br>
+     <input type="submit">
+ </form>
+ <button onclick="display()">View Balance</button>
+ <table border="1">
+    <thead>
+    <tr class="">
+      <th>TRANSACTION ID</th>
+      <th>USER ID</th>
+      <th>MOBILE NUMBER</th>
+      <th>OPERATOR</th>
+      <th>BALANCE</th>
+      </tr>
+  </thead>
+  <tbody id="tbl">
+  </tbody>
+  </table>
+     <script>
+         function getAmount()
+         {
+             event.preventDefault();
+            /* var amount= parseInt(document.querySelector("#amount").value);
+             var transactionid=Math.floor((Math.random() * 10000) + 1);
+            var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+             console.log(loggedInUser.email);*/
+             event.preventDefault();
+             var amount= parseInt(document.querySelector("#amount").value);
+             var transactionid=Math.floor((Math.random() * 100000) + 1);
+            var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+           var wallet=JSON.parse(localStorage.getItem('WALLET')) ||[];
+            let walletNumber=wallet.find(obj=>obj.mobile ==loggedInUser.number);
+            
+            let index=wallet.findIndex(obj=>obj.mobile==loggedInUser.number);
+         
+           if(walletNumber)
+           {
+               walletNumber.balance=walletNumber.balance+amount;
+               wallet[index]=walletNumber;
+           }
+           else
+           {
+           let obj={userid:loggedInUser.email,balance:amount,"transactionid":transactionid,operator:loggedInUser.operator,mobile:loggedInUser.number};
+           wallet.push(obj);
+           }
+           localStorage.setItem("WALLET",JSON.stringify(wallet));
+            
+
+
+             // Get all wallets
+           /*  var wallets = JSON.parse(localStorage.getItem("WALLETS")) ||[];
+
+             //Get loggedIn User wallet account
+             let walletAccount = wallets.find(obj=>obj.userId ==loggedInUser.email);
+            // console.log(walletAccount);
+             let index = wallets.findIndex(obj => obj.userId ==loggedInUser.email);
+             //console.log(index);
+
+             //1. If wallet account is not present , then add wallet account
+             if(walletAccount){
+                    ///update balance
+                    walletAccount.balance = walletAccount.balance + amount;
+                    //update wallet account 
+                    wallets[index] = walletAccount;
+             }
+             else {
+                 //Add wallet account
+             let obj={ userId: loggedInUser.email, balance : amount , "transactionId":transactionid, mobilenum:loggedInUser.number};
+             wallets.push(obj);
+             }
+             // Insert Wallet Amount
+             localStorage.setItem("WALLETS",JSON.stringify(wallets));
+            }*/
+        }
+             function display()
+             {
+             var usersTemp = JSON.parse(localStorage.getItem("WALLET"));
+             var users= usersTemp ? usersTemp:[];
+             let data = "";
+            for(let obj of users){
+              data += `<tr><td>${obj.transactionid}</td><td>${obj.userid}</td><td>${obj.mobile}</td><td>${obj.operator}</td><td>${obj.balance}</td></tr>`;
+            }
+            document.querySelector("#tbl").innerHTML = data;
+        }
+    
+            
+         
+     </script>   
+</body>
+</html>
