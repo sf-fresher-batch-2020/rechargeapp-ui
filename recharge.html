@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RechargeApp E-Recharge</title>
+</head>
+<body>
+    <form onsubmit="rechargeMethod()">
+        <label >Mobile Number</label><input type="tel" id="number" placeholder="Enter your number" required><br>
+        <label for="">Choose Mobile Operator</label><br>
+       <input type="radio" id="users" name="operator" value="airtel">
+        <label >Airtel </label><br>
+        <input type="radio" id="admin" name="operator" value="jio">
+        <label >Jio</label><br>
+        <label >Amount</label><input type="number" min="0" max="10000" step="1" name="deposit" id="amount" required><br>
+        <input type="submit">   
+    </form>
+    <script>
+        function rechargeMethod()
+        function rechargeMethod()
+        function rechargeMethod()
+        function rechargeMethod()
+        function rechargeMethod()
+        { 
+            var amount= parseInt(document.querySelector("#amount").value);
+            var mobileno=document.querySelector("#number").value;
+            var userOption=document.getElementsByName("operator");
+           // var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            let users=null;
+            for(let options of userOption)
+            {
+                if(options.checked){
+                    users=options.value;
+                    break;
+                }
+            }
+            var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            var wallet=JSON.parse(localStorage.getItem('WALLET')) ||[];
+            let walletNumber=wallet.find(obj=>obj.mobilenum ==loggedInUser.mobile);
+            let operatorName=wallet.find(obj=>obj.operator==loggedInUser.operator);
+            let index=wallet.findIndex(obj=>obj.mobilenum==loggedInUser.mobile);
+            if(walletNumber && operatorName)
+           {
+               walletNumber.balance=walletNumber.balance - amount;
+               wallet[index]=walletNumber;
+           }
+           else
+           {
+            let obj={userId:loggedInUser.userid,balance:amount,mobilenum:mobileno ,operator:users};
+            wallet.push(obj);         
+            }
+            localStorage.setItem("WALLET",JSON.stringify(wallet));
+
+            //var recharge=JSON.parse(localStorage.getItem('')) ||[];
+           // let obj={userid:loggedInUser.userid,balance:amount,mobilenum:mobileno};
+
+
+
+
+        }
+           // var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            let users=null;
+            for(let options of userOption)
+            {
+                if(options.checked){
+                    users=options.value;
+                    break;
+                }
+            }
+            var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            var wallet=JSON.parse(localStorage.getItem('WALLET')) ||[];
+            let walletNumber=wallet.find(obj=>obj.mobilenum ==loggedInUser.mobile);
+            let operatorName=wallet.find(obj=>obj.operator==loggedInUser.operator);
+            let index=wallet.findIndex(obj=>obj.mobilenum==loggedInUser.mobile);
+            if(walletNumber && operatorName)
+           {
+               walletNumber.balance=walletNumber.balance - amount;
+               wallet[index]=walletNumber;
+           }
+           else
+           {
+            let obj={userId:loggedInUser.userid,balance:amount,mobilenum:mobileno ,operator:users};
+            wallet.push(obj);         
+            }
+            localStorage.setItem("WALLET",JSON.stringify(wallet));
+
+            //var recharge=JSON.parse(localStorage.getItem('')) ||[];
+           // let obj={userid:loggedInUser.userid,balance:amount,mobilenum:mobileno};
+
+
+
+
+        }
+           // var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            let users=null;
+            for(let options of userOption)
+            {
+                if(options.checked){
+                    users=options.value;
+                    break;
+                }
+            }
+            var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            var wallet=JSON.parse(localStorage.getItem('WALLET')) ||[];
+            let walletNumber=wallet.find(obj=>obj.mobilenum ==loggedInUser.mobile);
+            let operatorName=wallet.find(obj=>obj.operator==loggedInUser.operator);
+            let index=wallet.findIndex(obj=>obj.mobilenum==loggedInUser.mobile);
+            if(walletNumber && operatorName)
+           {
+               walletNumber.balance=walletNumber.balance - amount;
+               wallet[index]=walletNumber;
+           }
+           else
+           {
+            let obj={userId:loggedInUser.userid,balance:amount,mobilenum:mobileno ,operator:users};
+            wallet.push(obj);         
+            }
+            localStorage.setItem("WALLET",JSON.stringify(wallet));
+
+            //var recharge=JSON.parse(localStorage.getItem('')) ||[];
+           // let obj={userid:loggedInUser.userid,balance:amount,mobilenum:mobileno};
+
+
+
+
+        }
+           // var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            let users=null;
+            for(let options of userOption)
+            {
+                if(options.checked){
+                    users=options.value;
+                    break;
+                }
+            }
+            var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            var wallet=JSON.parse(localStorage.getItem('WALLET')) ||[];
+            let walletNumber=wallet.find(obj=>obj.mobilenum ==loggedInUser.mobile);
+            let operatorName=wallet.find(obj=>obj.operator==loggedInUser.operator);
+            let index=wallet.findIndex(obj=>obj.mobilenum==loggedInUser.mobile);
+            if(walletNumber && operatorName)
+           {
+               walletNumber.balance=walletNumber.balance - amount;
+               wallet[index]=walletNumber;
+           }
+           else
+           {
+            let obj={userId:loggedInUser.userid,balance:amount,mobilenum:mobileno ,operator:users};
+            wallet.push(obj);         
+            }
+            localStorage.setItem("WALLET",JSON.stringify(wallet));
+
+            //var recharge=JSON.parse(localStorage.getItem('')) ||[];
+           // let obj={userid:loggedInUser.userid,balance:amount,mobilenum:mobileno};
+
+
+
+
+        }
+           // var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            let users=null;
+            for(let options of userOption)
+            {
+                if(options.checked){
+                    users=options.value;
+                    break;
+                }
+            }
+            var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            var wallet=JSON.parse(localStorage.getItem('WALLET')) ||[];
+            let walletNumber=wallet.find(obj=>obj.mobilenum ==loggedInUser.mobile);
+            let operatorName=wallet.find(obj=>obj.operator==loggedInUser.operator);
+            let index=wallet.findIndex(obj=>obj.mobilenum==loggedInUser.mobile);
+            if(walletNumber && operatorName)
+           {
+               walletNumber.balance=walletNumber.balance - amount;
+               wallet[index]=walletNumber;
+           }
+           else
+           {
+            let obj={userId:loggedInUser.userid,balance:amount,mobilenum:mobileno ,operator:users};
+            wallet.push(obj);         
+            }
+            localStorage.setItem("WALLET",JSON.stringify(wallet));
+
+            //var recharge=JSON.parse(localStorage.getItem('')) ||[];
+           // let obj={userid:loggedInUser.userid,balance:amount,mobilenum:mobileno};
+
+
+
+
+        }
+    </script>
+</body>
+</html>
