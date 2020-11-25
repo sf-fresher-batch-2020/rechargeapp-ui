@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RechargeApp E-Wallet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        #amount
+        {
+            margin-top:10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        #x
+        {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+         body
+        {
+            background-color:#4CACBE;
+        }
+        #y
+        {
+            position:fixed;
+            margin-left:1260px;
+            margin-top:5px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="logout()" class="btn btn-danger" id="y">Logout</button>
+    <h3>E-Wallet</h3>
+ <form  onsubmit="getAmount()">
+     <label for="">Enter Amount</label> 
+     <input type="number" min="0" max="10000" step="1" name="deposit" id="amount" required><br>
+     <input type="submit" class="btn btn-primary">
+ </form>
+ <button onclick="display()" class="btn btn-primary" id="x">View Balance</button>
+ <table border="1" class="table table-dark">
+    <thead>
+    <tr class="">
+      <th>TRANSACTION ID</th>
+      <th>USER ID</th>
+      <th>MOBILE NUMBER</th>
+      <th>OPERATOR</th>
+      <th>BALANCE</th>
+      </tr>
+  </thead>
+  <tbody id="tbl">
+  </tbody>
+  </table>
+ <!--<table class="table table-bordered">
+    <thead>
+      <tr class="">
+        <th scope="col">TRANSACTION ID</th>
+        <th scope="col">USER ID</th>
+        <th scope="col">MOBILE NUMBER</th>
+        <th scope="col">OPERATOR</th>
+        <th scope="col">BALANCE</th>
+      </tr>
+    </thead>
+    <tbody id="tb1">
+    </tbody>
+  </table>-->
+     <script>
+         function getAmount()
+         {
+             event.preventDefault();
+            /* var amount= parseInt(document.querySelector("#amount").value);
+             var transactionid=Math.floor((Math.random() * 10000) + 1);
+            var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+             console.log(loggedInUser.email);*/
+             event.preventDefault();
+             var amount= parseInt(document.querySelector("#amount").value);
+             var transactionid=Math.floor((Math.random() * 100000) + 1);
+            var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+           var wallet=JSON.parse(localStorage.getItem('WALLET')) ||[];
+            let walletNumber=wallet.find(obj=>obj.mobile ==loggedInUser.number);
+            
+            let index=wallet.findIndex(obj=>obj.mobile==loggedInUser.number);
+         
+           if(walletNumber)
+           {
+               walletNumber.balance=walletNumber.balance+amount;
+               wallet[index]=walletNumber;
+           }
+           else
+           {
+           let obj={userid:loggedInUser.email,balance:amount,"transactionid":transactionid,operator:loggedInUser.operator,mobile:loggedInUser.number};
+           wallet.push(obj);
+           }
+           localStorage.setItem("WALLET",JSON.stringify(wallet));
+            
+
+
+             // Get all wallets
+           /*  var wallets = JSON.parse(localStorage.getItem("WALLETS")) ||[];
+
+             //Get loggedIn User wallet account
+             let walletAccount = wallets.find(obj=>obj.userId ==loggedInUser.email);
+            // console.log(walletAccount);
+             let index = wallets.findIndex(obj => obj.userId ==loggedInUser.email);
+             //console.log(index);
+
+             //1. If wallet account is not present , then add wallet account
+             if(walletAccount){
+                    ///update balance
+                    walletAccount.balance = walletAccount.balance + amount;
+                    //update wallet account 
+                    wallets[index] = walletAccount;
+             }
+             else {
+                 //Add wallet account
+             let obj={ userId: loggedInUser.email, balance : amount , "transactionId":transactionid, mobilenum:loggedInUser.number};
+             wallets.push(obj);
+             }
+             // Insert Wallet Amount
+             localStorage.setItem("WALLETS",JSON.stringify(wallets));
+            }*/
+        }
+             function display()
+             {
+             var usersTemp = JSON.parse(localStorage.getItem("WALLET"));
+             var users= usersTemp ? usersTemp:[];
+             let data = "";
+            for(let obj of users){
+              data += `<tr><td>${obj.transactionid}</td><td>${obj.userid}</td><td>${obj.mobile}</td><td>${obj.operator}</td><td>${obj.balance}</td></tr>`;
+            }
+            document.querySelector("#tbl").innerHTML = data;
+        }
+        function logout()
+        {
+            window.location.href="login.html";
+        }
+     </script>   
+</body>
+</html>

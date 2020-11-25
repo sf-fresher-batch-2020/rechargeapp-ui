@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RechargeApp Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body
+        {
+            background-color:#4CACBE;
+        }
+        .container
+        {
+            width: fit-content;
+        }
+        .form-group
+        {
+            width:50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <form  onsubmit="registerForm()">
+       <h3>Register</h3>
+       <div class="form-group">
+       <label for="">Choose</label><br>
+       <input type="radio" id="users" name="user" value="airtel">
+        <label >Airtel</label><br>
+        <input type="radio" id="admin" name="user" value="jio">
+        <label >Jio</label><br>
+    <div class="form-group"><label >Name:</label><input type="text" id="name" placeholder="Enter your name" required autofocus></div>
+    <div class="form-group"><label >Mobile Number:</label><input type="tel" id="number" placeholder="Enter your number" required></div>
+    <div class="form-group"><label >Email:</label><input type="email" id="mail" placeholder="Enter your mail id" required></div>
+    <div class="form-group"><label for="">Password:</label><input type="password" name="" id="pass"></div>
+    <div class="form-group"><label >DOB:</label><input type="date" name="" id="dob" min="1950-01-01"></div>
+    
+        <label for="">Select Gender</label><br>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label><br>
+        <input type="submit" class="btn btn-primary">
+    </form>
+</div>
+    <script src="modules\register.js"></script>
+    <script>
+        function registerForm()
+        {
+            //$("#header").load("components/_header.html");
+            event.preventDefault();
+            var name=document.querySelector("#name").value;
+            var number=document.querySelector("#number").value;
+            var email=document.querySelector("#mail").value;
+            var password=document.querySelector("#pass").value;
+            var genderOption=document.getElementsByName("gender");
+            var userOption=document.getElementsByName("user");
+            var wallet=0;
+            var dob=document.querySelector("#dob").value;
+            let user=null;
+            for(let options of userOption)
+            {
+                if(options.checked){
+                    user=options.value;
+                    break;
+                }
+            }
+            let gender=null;
+            for(let option of genderOption)
+            {
+                if(option.checked){
+                    gender=option.value;
+                    break;
+                }
+            }
+            
+        userObj={"operator":user,"name":name,"number":number,"email":email,"password":password, "dob":dob,"gender":gender};
+           // userObj={"user":user,"name":name,"number":number,"mail":mail,"gender":gender};
+        var obj=new RegisterForm();
+        let result=obj.register(userObj);
+         if(result=='success') 
+         {
+            alert("Registered Successfully");
+            window.location.href="login.html";
+          }
+        else
+        {
+            alert("Registration Failed");
+        }
+         /* var liss=[];
+            liss.push(userObj);
+            localStorage.setItem("Registered_Users",JSON.stringify(liss));*/
+    }
+</script>
+</body>
+</html>

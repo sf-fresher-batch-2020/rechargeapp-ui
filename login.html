@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RechargeApp Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body
+        {
+            background-color:#4CACBE;
+        }
+        .container
+        {
+            width: fit-content;
+        }
+        .form-group
+        {
+            width:50%;
+        }
+    </style>
+</head>
+<body>
+        <div id= "message"></div>
+        <!-- <form onsubmit="loginMethod()">
+          <label for="">Choose</label><br>
+            <input type="radio" id="users" name="user" value="subscriber">
+             <label >Subscriber </label><br>
+             <input type="radio" id="admin" name="user" value="admin">
+             <label >Admin</label><br>
+            <label for="">Email</label>
+            <input type="email" id="mail"><br>
+            <label for="">Password</label>
+            <input type="password" id="pass"><br>
+            <input type="submit">--> 
+            <div class="container">
+                <h4>Login</h4>
+                <form onsubmit="loginMethod()">
+                  <div class="form-group">
+                      <label for="email">Email:</label>
+                      <input type="email" class="col-xs-3" id="email" placeholder="Enter email" name="email" id="mail" required autofocus>
+                  </div>
+                  <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="col-xs-3" id="pwd" placeholder="Enter password" name="pswd" id="pass" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+    <script src="modules\login.js"></script>
+    <script>
+        function loginMethod()
+        {
+            event.preventDefault();
+            var mail=document.querySelector("#mail").value;
+            var pass=document.querySelector("#pass").value;
+           // var userOption=document.getElementsByName("user");
+           /* let users=null;
+            for(let options of userOption)
+            {
+                if(options.checked){
+                    users=options.value;
+                    break;
+                }
+            }*/
+            var obj=new login();
+            var user=obj.loginFunction(mail,pass);
+            if(user)
+            {
+                //alert("Login Successful");
+                window.location.href="wallet.html";
+            }
+            else
+            {
+                document.querySelector("#message").innerHTML="Invalid";
+            }
+        }
+    </script>
+</body>
+</html>
