@@ -40,30 +40,23 @@
     </form>
 </div> 
     <script>
-        function rechargeMethod()
+           function rechargeMethod()
         { 
+            event.preventDefault();
             var amount= parseInt(document.querySelector("#amount").value);
             var mobileno=document.querySelector("#number").value;
-            var userOption=document.getElementsByName("operator");
-           // var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
-            let users=null;
-            for(let options of userOption)
-            {
-                if(options.checked){
-                    users=options.value;
-                    break;
-                }
-            }
+           // var userOption=document.getElementsByName("operator");
+          // var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
             var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
             var wallet=JSON.parse(localStorage.getItem('WALLET')) ||[];
-            let walletNumber=wallet.find(obj=>obj.mobilenum ==loggedInUser.mobile);
-            let operatorName=wallet.find(obj=>obj.operator==loggedInUser.operator);
+            let walletNumber=wallet.find(obj=>obj.mobilenum == loggedInUser.mobile);
+           // let operatorName=wallet.find(obj=>obj.operator==loggedInUser.operator);
             let index=wallet.findIndex(obj=>obj.mobilenum==loggedInUser.mobile);
-            if(walletNumber && operatorName)
+            if(walletNumber)
            {
                walletNumber.balance=walletNumber.balance - amount;
                wallet[index]=walletNumber;
-               toastr.success("Recharge Successful");
+               alert("Recharge Successful");
            }
            else
            {
@@ -78,6 +71,7 @@
         }
         function logout()
         {
+            alert("Logged Out Successfully");
             window.location.href="login.html";
         }
 </script>
